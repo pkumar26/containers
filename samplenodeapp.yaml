@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: k8s-demo
-        image: kumar.azurecr.io/samplenodeapp:7
+        image: kumar.azurecr.io/samplenodeapp
         ports:
         - containerPort: 8080
       imagePullSecrets:
