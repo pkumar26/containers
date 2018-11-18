@@ -1,1 +1,1 @@
-# containers
+# CI-CD demo with sample containers
