@@ -1,17 +1,17 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: samplenodeapp-deployment
+  name: mynodeapp-deployment
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: samplenodeapp-v1
+        app: mynodeapp
     spec:
       containers:
-      - name: k8s-demo
-        image: kumar.azurecr.io/samplenodeapp
+      - name: mynodeapp
+        image: kumar.azurecr.io/mynodeapp
         ports:
         - containerPort: 8080
       imagePullSecrets:
@@ -20,7 +20,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: samplenodeapp-v1
+  name: mynodeapp
 spec:
   type: NodePort
   ports:
@@ -30,12 +30,12 @@ spec:
     protocol: TCP
     name: http
   selector:
-    app: samplenodeapp-v1
+    app: mynodeapp
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: samplenodeapp-v1-ingress
+  name: mynodeapp-ingress
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.frontend.rule.type: PathPrefixStrip
@@ -44,7 +44,7 @@ spec:
   - host: demo.example.com
     http:
       paths:
-      - path: /v1
+      - path: /mynodeapp
         backend:
-          serviceName: samplenodeapp-v1
+          serviceName: mynodeapp
           servicePort: http
