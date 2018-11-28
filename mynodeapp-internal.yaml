@@ -25,7 +25,7 @@ metadata:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
     service.beta.kubernetes.io/azure-load-balancer-internal-subnet: "services"
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - port: 80
     nodePort: 30300
